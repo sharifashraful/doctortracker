@@ -8,8 +8,8 @@ let stopping = false;
 createApp()
   .then(async (app) => {
     await seedIfEmpty();
-    const http = app.listen(port, "127.0.0.1", () => {
-      console.log(`Doctor Tracker API listening on http://127.0.0.1:${port}`);
+    const http = app.listen(port, "0.0.0.0", () => {
+      console.log(`Doctor Tracker API listening on http://0.0.0.0:${port}`);
     });
 
     const shutdown = async () => {
