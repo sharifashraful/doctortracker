@@ -1,6 +1,6 @@
-import { MAX_PAGE_SIZE, PAGE_SIZE } from "./constants.js";
+import { MAX_PAGE_SIZE, PAGE_SIZE } from "../config/constants.js";
 import { clinicDayEnd, clinicDayStart, utcDayEnd, utcDayStart } from "./dates.js";
-import { BadRequestError } from "./errors/app-error.js";
+import { BadRequestError } from "../errors/app-error.js";
 
 export function escapeRegex(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

@@ -1,9 +1,9 @@
 import { RateLimitError, UnauthorizedError } from "../errors/app-error.js";
 import { rateLimit } from "../lib/rate-limit.js";
 import { User } from "../models/User.js";
-import { verifyPassword } from "../password.js";
-import { signSession } from "../token.js";
-import type { LoginInput } from "../validators.js";
+import { verifyPassword } from "../lib/password.js";
+import { signSession } from "../lib/token.js";
+import type { LoginInput } from "../validators/schemas.js";
 
 const WINDOW_MS = 15 * 60 * 1000;
 

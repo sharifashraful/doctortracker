@@ -1,6 +1,6 @@
-import { createApp } from "./app.js";
-import { disconnectDB } from "./db.js";
-import { seedIfEmpty } from "./seed.js";
+import { createApp } from "./app/create-app.js";
+import { disconnectDB } from "./db/connection.js";
+import { seedIfEmpty } from "./db/seed.js";
 
 const port = Number(process.env.PORT || 4000);
 let stopping = false;

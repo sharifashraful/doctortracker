@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { Doctor } from "./models/Doctor.js";
-import { Patient } from "./models/Patient.js";
-import { User } from "./models/User.js";
+import { Doctor } from "../models/Doctor.js";
+import { Patient } from "../models/Patient.js";
+import { User } from "../models/User.js";
 import { startPortableMongo, stopPortableMongo, usesPortableMongo } from "./portable-mongo.js";
 
 let indexes: Promise<void> | null = null;

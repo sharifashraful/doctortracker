@@ -2,7 +2,7 @@ import { Router } from "express";
 import * as patientController from "../controllers/patient.controller.js";
 import { authenticate } from "../middleware/authenticate.js";
 import { validateBody } from "../middleware/validate.js";
-import { patientSchema } from "../validators.js";
+import { patientSchema } from "../validators/schemas.js";
 
 export const patientsRouter = Router();
 

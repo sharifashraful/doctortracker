@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
-const dataDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../data/mongo");
+const dataDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../data/mongo");
 
 let server: MongoMemoryServer | null = null;
 

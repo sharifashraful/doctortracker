@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import type { z } from "zod";
 import { ValidationError } from "../errors/app-error.js";
-import { zodFields } from "../validators.js";
+import { zodFields } from "../validators/schemas.js";
 
 export function validateBody<T>(schema: z.ZodType<T>) {
   return (req: Request, res: Response, next: NextFunction) => {

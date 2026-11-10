@@ -1,4 +1,4 @@
-import type { Condition, Gender } from "./constants.js";
+import type { Condition, Gender } from "../config/constants.js";
 
 type DoctorLike = {
   _id: unknown;

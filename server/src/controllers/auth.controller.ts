@@ -1,11 +1,11 @@
-import { SESSION_COOKIE } from "../constants.js";
+import { SESSION_COOKIE } from "../config/constants.js";
 import { asyncHandler } from "../middleware/async-handler.js";
 import { currentUser } from "../middleware/authenticate.js";
 import { readInput } from "../middleware/validate.js";
 import { clientIp, sendOk } from "../lib/respond.js";
 import * as authService from "../services/auth.service.js";
-import { sessionCookie } from "../token.js";
-import type { LoginInput } from "../validators.js";
+import { sessionCookie } from "../lib/token.js";
+import type { LoginInput } from "../validators/schemas.js";
 
 export const login = asyncHandler(async (req, res) => {
   const result = await authService.login(readInput<LoginInput>(res), clientIp(req));

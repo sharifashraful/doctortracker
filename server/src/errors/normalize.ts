@@ -9,7 +9,7 @@ import {
   ServiceUnavailableError,
   ValidationError,
 } from "./app-error.js";
-import { zodFields } from "../validators.js";
+import { zodFields } from "../validators/schemas.js";
 
 type ErrorLike = {
   name?: string;

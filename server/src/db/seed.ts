@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 import { pathToFileURL } from "node:url";
-import { connectDB, disconnectDB } from "./db.js";
-import { hashPassword } from "./password.js";
-import { Doctor } from "./models/Doctor.js";
-import { Patient } from "./models/Patient.js";
-import { User } from "./models/User.js";
+import { connectDB, disconnectDB } from "./connection.js";
+import { hashPassword } from "../lib/password.js";
+import { Doctor } from "../models/Doctor.js";
+import { Patient } from "../models/Patient.js";
+import { User } from "../models/User.js";
 
 const doctors = [
   ["Amira Hassan", "Cardiology", "City General Hospital", "+1 415 555 0142", "amira.hassan@citygeneral.example"],

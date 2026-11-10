@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
-import { SESSION_COOKIE, type SessionUser } from "../constants.js";
+import { SESSION_COOKIE, type SessionUser } from "../config/constants.js";
 import { UnauthorizedError } from "../errors/app-error.js";
-import { verifySession } from "../token.js";
+import { verifySession } from "../lib/token.js";
 
 export function currentUser(res: Response) {
   return res.locals.user as SessionUser;

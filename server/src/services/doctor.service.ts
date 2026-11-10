@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { ConflictError, NotFoundError } from "../errors/app-error.js";
 import { Doctor } from "../models/Doctor.js";
 import { Patient } from "../models/Patient.js";
-import { clinicDayRange, escapeRegex, pagesFor, parsePagination, searchTerm } from "../query.js";
-import { serializeDoctor } from "../serialize.js";
-import type { DoctorInput } from "../validators.js";
+import { clinicDayRange, escapeRegex, pagesFor, parsePagination, searchTerm } from "../lib/query.js";
+import { serializeDoctor } from "../lib/serialize.js";
+import type { DoctorInput } from "../validators/schemas.js";
 
 function doctorId(value: string) {
   if (!mongoose.isValidObjectId(value)) throw new NotFoundError("Doctor not found.");

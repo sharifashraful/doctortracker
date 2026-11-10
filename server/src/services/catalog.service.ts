@@ -1,8 +1,8 @@
-import { CONDITIONS } from "../constants.js";
-import { clinicDayStart, clinicTimeZone, clinicToday, shiftCalendarDate } from "../dates.js";
+import { CONDITIONS } from "../config/constants.js";
+import { clinicDayStart, clinicTimeZone, clinicToday, shiftCalendarDate } from "../lib/dates.js";
 import { Doctor } from "../models/Doctor.js";
 import { Patient } from "../models/Patient.js";
-import { serializePatient } from "../serialize.js";
+import { serializePatient } from "../lib/serialize.js";
 
 function lastDays(count: number, timeZone: string) {
   const today = clinicToday(timeZone);

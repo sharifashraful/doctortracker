@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { CONDITIONS, GENDERS } from "./constants.js";
-import { clinicToday, parseCalendarDate } from "./dates.js";
+import { CONDITIONS, GENDERS } from "../config/constants.js";
+import { clinicToday, parseCalendarDate } from "../lib/dates.js";
 
 const phone = z
   .string()

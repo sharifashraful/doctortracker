@@ -1,9 +1,9 @@
 import { asyncHandler } from "../middleware/async-handler.js";
 import { readInput } from "../middleware/validate.js";
 import { routeParam, sendOk } from "../lib/respond.js";
-import { queryOf } from "../query.js";
+import { queryOf } from "../lib/query.js";
 import * as patientService from "../services/patient.service.js";
-import type { PatientInput } from "../validators.js";
+import type { PatientInput } from "../validators/schemas.js";
 
 function pageOf(result: { data: unknown; page: number; limit: number; total: number; pages: number }) {
   return { page: result.page, limit: result.limit, total: result.total, pages: result.pages };

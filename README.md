@@ -118,10 +118,16 @@ frontend/             Next.js application
   components/dashboard census screen and charts
   lib/                browser API client and form validation
 server/               Express application
+  src/index.ts        process entry
+  src/app             Express app setup
+  src/config          shared constants
+  src/db              connection, portable MongoDB, and seed
   src/routes          HTTP paths
   src/controllers     request and response
   src/services        business rules and queries
   src/middleware      auth, validation, and the error handler
+  src/validators      request schemas
+  src/lib             dates, queries, sessions, and response helpers
   src/errors          typed HTTP errors
   src/models          Mongoose schemas
 ```

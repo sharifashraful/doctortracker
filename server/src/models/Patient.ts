@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { CONDITIONS, GENDERS } from "../constants.js";
+import { CONDITIONS, GENDERS } from "../config/constants.js";
 
 const patientSchema = new Schema(
   {

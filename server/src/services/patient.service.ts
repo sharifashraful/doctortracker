@@ -1,11 +1,11 @@
-import { CONDITIONS } from "../constants.js";
+import { CONDITIONS } from "../config/constants.js";
 import { BadRequestError, NotFoundError } from "../errors/app-error.js";
-import { utcDayStart } from "../dates.js";
+import { utcDayStart } from "../lib/dates.js";
 import { Doctor } from "../models/Doctor.js";
 import { Patient } from "../models/Patient.js";
-import { escapeRegex, pagesFor, parsePagination, searchTerm, utcDayRange } from "../query.js";
-import { serializePatient } from "../serialize.js";
-import type { PatientInput } from "../validators.js";
+import { escapeRegex, pagesFor, parsePagination, searchTerm, utcDayRange } from "../lib/query.js";
+import { serializePatient } from "../lib/serialize.js";
+import type { PatientInput } from "../validators/schemas.js";
 
 function patientId(value: string) {
   if (!/^[a-f\d]{24}$/i.test(value)) throw new NotFoundError("Patient not found.");

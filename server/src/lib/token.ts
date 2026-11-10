@@ -1,5 +1,5 @@
 import { SignJWT, jwtVerify } from "jose";
-import type { SessionUser } from "./constants.js";
+import type { SessionUser } from "../config/constants.js";
 
 function secret() {
   const value = process.env.AUTH_SECRET;

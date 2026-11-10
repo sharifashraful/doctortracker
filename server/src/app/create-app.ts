@@ -1,14 +1,14 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
-import { connectDB } from "./db.js";
-import { ForbiddenError } from "./errors/app-error.js";
-import { errorHandler } from "./middleware/error-handler.js";
-import { notFound } from "./middleware/not-found.js";
-import { authRouter } from "./routes/auth.routes.js";
-import { catalogRouter } from "./routes/catalog.routes.js";
-import { doctorsRouter } from "./routes/doctor.routes.js";
-import { patientsRouter } from "./routes/patient.routes.js";
+import { connectDB } from "../db/connection.js";
+import { ForbiddenError } from "../errors/app-error.js";
+import { errorHandler } from "../middleware/error-handler.js";
+import { notFound } from "../middleware/not-found.js";
+import { authRouter } from "../routes/auth.routes.js";
+import { catalogRouter } from "../routes/catalog.routes.js";
+import { doctorsRouter } from "../routes/doctor.routes.js";
+import { patientsRouter } from "../routes/patient.routes.js";
 
 function originAllowed(origin?: string) {
   if (!origin) return true;
