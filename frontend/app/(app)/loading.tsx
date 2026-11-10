@@ -1,5 +1,5 @@
-import { PageLoader } from "@/components/ui/page-loader";
+import { PageShimmer } from "@/components/ui/page-shimmer";
 
 export default function Loading() {
-  return <PageLoader />;
+  return <PageShimmer />;
 }

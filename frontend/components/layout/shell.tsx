@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { LayoutDashboard, LogOut, Menu, Stethoscope, Users, X } from "lucide-react";
 import { api, ClientError } from "@/lib/client";
 import { errorTitle } from "@/lib/errors";
 import { colorFromName, initials } from "@/lib/format";
 import { pushToast } from "@/components/layout/toast";
 import { Button, ErrorNote } from "@/components/ui";
+import { PageShimmer } from "@/components/ui/page-shimmer";
 import type { SessionUser } from "@/types";
 
 const links = [
@@ -24,6 +25,7 @@ export function Shell({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<SessionUser | null>(null);
   const [ready, setReady] = useState(false);
   const [gateError, setGateError] = useState<unknown>(null);
+  const [pendingPath, setPendingPath] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -49,7 +51,25 @@ export function Shell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setOpen(false);
+    setPendingPath(null);
   }, [pathname]);
+
+  function onNavigateClick(event: MouseEvent<HTMLDivElement>) {
+    if (event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const anchor = (event.target as HTMLElement).closest("a");
+    if (!anchor || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+    const href = anchor.getAttribute("href");
+    if (!href || href.startsWith("#") || href.startsWith("mailto:")) return;
+    let url: URL;
+    try {
+      url = new URL(anchor.href, window.location.href);
+    } catch {
+      return;
+    }
+    if (url.origin !== window.location.origin || url.pathname === pathname) return;
+    setPendingPath(url.pathname);
+  }
 
   async function logout() {
     try {
@@ -79,7 +99,7 @@ export function Shell({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" onClickCapture={onNavigateClick}>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[90] focus:rounded-lg focus:bg-card focus:px-3 focus:py-2">
         Skip to content
       </a>
@@ -153,8 +173,15 @@ export function Shell({ children }: { children: ReactNode }) {
           <p className="font-display text-lg">Doctor Tracker</p>
           <span className="w-9" />
         </header>
-        <main id="main" className="mx-auto w-full min-w-0 max-w-[1240px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-          {children}
+        <main id="main" aria-busy={pendingPath ? true : undefined} className="mx-auto w-full min-w-0 max-w-[1240px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+          {pendingPath ? (
+            <>
+              <p className="sr-only">Loading page</p>
+              <PageShimmer path={pendingPath} />
+            </>
+          ) : (
+            children
+          )}
         </main>
       </div>
     </div>
