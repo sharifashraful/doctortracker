@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 import { PatientForm } from "@/components/patients/patient-form";
 import { useResource } from "@/components/hooks";
 import { pushToast } from "@/components/layout/toast";
-import { Breadcrumb, EmptyState, ErrorNote, PageHeader, Panel, Skeleton } from "@/components/ui";
+import { Breadcrumb, EmptyState, ErrorNote, PageHeader, PageLoader, Panel } from "@/components/ui";
 import { api } from "@/lib/client";
 import type { PatientInput } from "@/lib/validators";
 import type { DoctorDTO, DoctorRef, MetaDTO, PatientDTO } from "@/types";
@@ -40,7 +40,7 @@ function RecordFrame({
           <ErrorNote error={metaFailure} />
         </div>
       ) : null}
-      {loading ? <Skeleton className="h-80" /> : <Panel className="max-w-3xl p-5 sm:p-6">{children}</Panel>}
+      {loading ? <PageLoader /> : <Panel className="max-w-3xl p-5 sm:p-6">{children}</Panel>}
     </div>
   );
 }

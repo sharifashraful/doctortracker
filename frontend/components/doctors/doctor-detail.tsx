@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { useResource } from "@/components/hooks";
 import { PatientsScreen } from "@/components/patients/patients-screen";
 import { pushToast } from "@/components/layout/toast";
-import { Button, ConfirmDialog, EmptyState, Panel, Skeleton } from "@/components/ui";
+import { Button, ConfirmDialog, EmptyState, PageLoader, Panel } from "@/components/ui";
 import { api } from "@/lib/client";
 import { errorTitle } from "@/lib/errors";
 import { colorFromName, formatDate, initials } from "@/lib/format";
@@ -55,7 +55,7 @@ export function DoctorDetail({ id }: { id: string }) {
         All doctors
       </Link>
       {!record ? (
-        <Skeleton className="h-40" />
+        <PageLoader />
       ) : (
         <Panel className="mb-6 p-5 sm:p-6">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useResource } from "@/components/hooks";
-import { ConditionBadge, EmptyState, PageHeader, Panel, Skeleton } from "@/components/ui";
+import { ConditionBadge, EmptyState, PageHeader, PageLoader, Panel } from "@/components/ui";
 import { formatDate, formatLongDate } from "@/lib/format";
 import type { StatsDTO } from "@/types";
 
@@ -39,13 +39,7 @@ export function DashboardScreen() {
           </div>
         </Panel>
       ) : null}
-      {!stats && loading ? (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <Skeleton key={index} className="h-28" />
-          ))}
-        </div>
-      ) : null}
+      {!stats && loading ? <PageLoader /> : null}
       {stats ? (
         <>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

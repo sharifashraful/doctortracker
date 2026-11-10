@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { DoctorForm } from "@/components/doctors/doctor-form";
 import { useResource } from "@/components/hooks";
 import { pushToast } from "@/components/layout/toast";
-import { Breadcrumb, EmptyState, ErrorNote, PageHeader, Panel, Skeleton } from "@/components/ui";
+import { Breadcrumb, EmptyState, ErrorNote, PageHeader, PageLoader, Panel } from "@/components/ui";
 import { api } from "@/lib/client";
 import type { DoctorInput } from "@/lib/validators";
 import type { DoctorDTO, MetaDTO } from "@/types";
@@ -59,7 +59,7 @@ export function EditDoctorScreen({ id }: { id: string }) {
         </div>
       ) : null}
       {doctor.loading && !record ? (
-        <Skeleton className="h-80" />
+        <PageLoader />
       ) : record ? (
         <Panel className="max-w-3xl p-5 sm:p-6">
           <DoctorForm

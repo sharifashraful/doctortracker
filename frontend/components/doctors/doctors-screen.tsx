@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import { Pencil, SlidersHorizontal, Trash2 } from "lucide-react";
 import { useDebouncedValue, useQueryState, useResource } from "@/components/hooks";
 import { pushToast } from "@/components/layout/toast";
-import { ConfirmDialog, EmptyState, ErrorNote, PageHeader, Pagination, Panel, Skeleton, controlClass } from "@/components/ui";
+import { ConfirmDialog, EmptyState, ErrorNote, PageHeader, PageLoader, Pagination, Panel, controlClass } from "@/components/ui";
 import { api } from "@/lib/client";
 import { errorTitle } from "@/lib/errors";
 import { colorFromName, formatDate, initials } from "@/lib/format";
@@ -135,13 +135,7 @@ export function DoctorsScreen() {
         </div>
       ) : null}
       <Panel>
-        {list.loading && !list.data ? (
-          <div className="space-y-3 p-4">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Skeleton key={index} className="h-14 rounded-xl" />
-            ))}
-          </div>
-        ) : null}
+        {list.loading && !list.data ? <PageLoader /> : null}
         {list.failure ? <EmptyState title={list.failure.label} body={list.failure.message} /> : null}
         {list.data && doctors.length === 0 ? (
           <EmptyState title="No doctors match" body="Try another search, or add the first doctor to this registry." />

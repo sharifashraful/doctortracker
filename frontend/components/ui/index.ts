@@ -9,6 +9,7 @@ export { ErrorNote } from "@/components/ui/error-note";
 export { Field, controlClass } from "@/components/ui/field";
 export { Modal } from "@/components/ui/modal";
 export { PageHeader } from "@/components/ui/page-header";
+export { PageLoader } from "@/components/ui/page-loader";
 export { Pagination } from "@/components/ui/pagination";
 export { Panel } from "@/components/ui/panel";
 export { Skeleton } from "@/components/ui/skeleton";
