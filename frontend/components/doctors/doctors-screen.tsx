@@ -135,12 +135,12 @@ export function DoctorsScreen() {
         </div>
       ) : null}
       <Panel>
-        {list.loading && !list.data ? <PageLoader /> : null}
-        {list.failure ? <EmptyState title={list.failure.label} body={list.failure.message} /> : null}
-        {list.data && doctors.length === 0 ? (
+        {list.loading ? <PageLoader /> : null}
+        {!list.loading && list.failure ? <EmptyState title={list.failure.label} body={list.failure.message} /> : null}
+        {!list.loading && list.data && doctors.length === 0 ? (
           <EmptyState title="No doctors match" body="Try another search, or add the first doctor to this registry." />
         ) : null}
-        {doctors.length > 0 ? (
+        {!list.loading && doctors.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[760px] text-left text-sm">
               <thead className="border-b border-line text-xs tracking-wide text-muted uppercase">
@@ -195,7 +195,7 @@ export function DoctorsScreen() {
             </table>
           </div>
         ) : null}
-        {list.data ? (
+        {!list.loading && list.data ? (
           <Pagination
             page={list.data.page}
             pages={list.data.pages}

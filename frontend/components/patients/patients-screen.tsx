@@ -138,12 +138,12 @@ export function PatientsScreen({
         </div>
       ) : null}
       <Panel>
-        {list.loading && !list.data ? <PageLoader /> : null}
-        {list.failure ? <EmptyState title={list.failure.label} body={list.failure.message} /> : null}
-        {list.data && patients.length === 0 ? (
+        {list.loading ? <PageLoader /> : null}
+        {!list.loading && list.failure ? <EmptyState title={list.failure.label} body={list.failure.message} /> : null}
+        {!list.loading && list.data && patients.length === 0 ? (
           <EmptyState title="No patients match" body="Adjust the filters, or add a patient to a doctor." />
         ) : null}
-        {patients.length > 0 ? (
+        {!list.loading && patients.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[820px] text-left text-sm">
               <thead className="border-b border-line text-xs tracking-wide text-muted uppercase">
@@ -200,7 +200,7 @@ export function PatientsScreen({
             </table>
           </div>
         ) : null}
-        {list.data ? (
+        {!list.loading && list.data ? (
           <Pagination
             page={list.data.page}
             pages={list.data.pages}
