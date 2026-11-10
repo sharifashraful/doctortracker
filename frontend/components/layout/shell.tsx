@@ -26,6 +26,8 @@ export function Shell({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [gateError, setGateError] = useState<unknown>(null);
   const [pendingPath, setPendingPath] = useState<string | null>(null);
+  if (pendingPath === pathname) setPendingPath(null);
+  const showShimmer = pendingPath !== null && pendingPath !== pathname;
 
   useEffect(() => {
     let active = true;
@@ -51,7 +53,6 @@ export function Shell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setOpen(false);
-    setPendingPath(null);
   }, [pathname]);
 
   function onNavigateClick(event: MouseEvent<HTMLDivElement>) {
@@ -173,15 +174,16 @@ export function Shell({ children }: { children: ReactNode }) {
           <p className="font-display text-lg">Doctor Tracker</p>
           <span className="w-9" />
         </header>
-        <main id="main" aria-busy={pendingPath ? true : undefined} className="mx-auto w-full min-w-0 max-w-[1240px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-          {pendingPath ? (
-            <>
-              <p className="sr-only">Loading page</p>
-              <PageShimmer path={pendingPath} />
-            </>
-          ) : (
-            children
-          )}
+        <main id="main" aria-busy={showShimmer ? true : undefined} className="mx-auto w-full min-w-0 max-w-[1240px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+          <div className="relative">
+            <div className={showShimmer ? "invisible" : undefined}>{children}</div>
+            {showShimmer ? (
+              <div className="absolute inset-0">
+                <p className="sr-only">Loading page</p>
+                <PageShimmer path={pendingPath ?? undefined} />
+              </div>
+            ) : null}
+          </div>
         </main>
       </div>
     </div>
